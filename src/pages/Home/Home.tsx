@@ -47,16 +47,17 @@ const Home: React.FC = () => {
             <p>{faceData.face}</p>
 
             {/* Input para que el usuario escriba su frase */}
-            <Input
-                value={userInput}
-                placeholder="Escribe aquí..."
-                onChange={handleInputChange}
-            />
-
-            {/* Botón enviar */}
-            <Button onClick={handleSubmit} disabled={loading}>
-                {loading ? "Verificando..." : "Enviar"}
-            </Button>
+            {/* Input y botón más separados y centrados */}
+            <div className="input-container">
+                <Input
+                    value={userInput}
+                    onChange={handleInputChange}
+                    placeholder="Escribe aquí..."
+                />
+                <Button onClick={handleSubmit} disabled={loading}>
+                    {loading ? "Verificando..." : "Enviar"}
+                </Button>
+            </div>
 
             {/* Mostrar errores o respuestas */}
             {verifyError && <p className="error">{verifyError}</p>}

@@ -1,20 +1,16 @@
+/* Input.module.css */
 .input {
     width: 100%;
     padding: 10px 15px;
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 5px;
     outline: none;
-    transition: border-color 0.3s ease;
-
-    /* Basic accessibility and responsive design consideration */
-    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input:focus {
-    border-color: #007bff;
-}
-
-.input::placeholder {
-    color: #aaa;
+    border-color: var(--primary-color, #007bff);
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2);
 }

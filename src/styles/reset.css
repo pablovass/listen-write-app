@@ -81,3 +81,8 @@ h6 {
 p {
     margin-bottom: 1rem;
 }
+* {
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+}
