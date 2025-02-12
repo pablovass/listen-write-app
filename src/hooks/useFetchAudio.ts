@@ -20,8 +20,9 @@ export const useFetchAudio = (audioId: string | null) => {
                 const response = await axios.get(`http://127.0.0.1:5000/audio/${audioId}`, {
                     responseType: "blob",
                 });
-
+                console.log("AudioID recibidos desde el servidor:", audioId);
                 const audioBlobUrl = URL.createObjectURL(response.data); // Creamos una URL para el archivo de audio
+                console.log("Audio recibidos desde el servidor:", response.data);
                 setAudioData({
                     audioUrl: audioBlobUrl,
                     error: "",

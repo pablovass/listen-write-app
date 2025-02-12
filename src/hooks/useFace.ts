@@ -13,15 +13,21 @@ const useFace = () => {
     const [faceData, setFaceData] = useState<{ face: string; audioId: string ; id:number } | null>(null);
 
     useEffect(() => {
+        let isMounted = true; // Flag para evitar ejecutar la función 2 veces
         const loadData = async () => {
             try {
                 const data = await fetchFaceAndAudio();
-                setFaceData(data);
+                if (isMounted) {
+                    setFaceData(data);
+                }
             } catch (error) {
                 console.error("Error fetching face data:", error);
             }
         };
         loadData();
+        return () => {
+            isMounted = false; // Limpiamos cuando el componente se desmonta
+        };
     }, []);
 
     return faceData;
