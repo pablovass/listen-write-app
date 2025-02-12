@@ -6,7 +6,10 @@ interface AudioState {
     error: string;
 }
 
-export const useFetchAudio = (audioId: string | null) => {
+/**
+ * Hook para cargar un audio dado su ID
+ */
+export const useFetchAudio = (audioId: string | null, refreshKey?: number) => {
     const [audioData, setAudioData] = useState<AudioState>({ audioUrl: "", error: "" });
 
     useEffect(() => {
@@ -19,10 +22,10 @@ export const useFetchAudio = (audioId: string | null) => {
             try {
                 const response = await axios.get(`http://127.0.0.1:5000/audio/${audioId}`, {
                     responseType: "blob",
+
                 });
-                console.log("AudioID recibidos desde el servidor:", audioId);
                 const audioBlobUrl = URL.createObjectURL(response.data); // Creamos una URL para el archivo de audio
-                console.log("Audio recibidos desde el servidor:", response.data);
+                console.log("Datos Audio:", audioId); // Verifica la estructura del objeto aquí
                 setAudioData({
                     audioUrl: audioBlobUrl,
                     error: "",
@@ -37,7 +40,7 @@ export const useFetchAudio = (audioId: string | null) => {
         };
 
         loadAudio();
-    }, [audioId]); // `audioId` es ahora un parámetro dinámico
+    }, [audioId, refreshKey]); // Agregamos refreshKey como dependencia
 
     return audioData; // Devolvemos la URL del audio y posibles errores
 };
