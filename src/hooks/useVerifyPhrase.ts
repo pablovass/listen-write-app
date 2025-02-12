@@ -24,12 +24,16 @@ export const useVerifyPhrase = () => {
         setResult(null);
 
         try {
-            const response = await axiosInstance.post<VerifyResult>("/frases/verificar", { id, texto }); // Especifica el tipo esperado para la respuesta
+            console.log("Datos enviados al servidor:", { id, texto });
+
+            const response = await axiosInstance.post<VerifyResult>("/frases/verificar", { id, texto }); // Enviamos el POST
             setResult(response.data);
             console.log("Respuesta del servidor (hook):", response.data);
+
         } catch (err: any) {
             console.error("Error de Axios (hook):", err.response || err);
             setError("No se pudo verificar la frase. Intenta nuevamente.");
+
         } finally {
             setLoading(false);
         }

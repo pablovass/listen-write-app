@@ -17,10 +17,10 @@ const Home: React.FC = () => {
     };
 
     const handleSubmit = async () => {
-        if (!faceData || !faceData.audioId) return; // Verificamos que hay datos válidos
+        if (!faceData || !faceData.id) return; // Verificamos que hay datos válidos
 
         // Enviamos el texto y el ID al servidor (conversión a número si es necesario)
-        await verifyPhrase(Number(faceData.audioId), userInput);
+        await verifyPhrase(Number(faceData.id), userInput);
     };
 
     if (!faceData) {
